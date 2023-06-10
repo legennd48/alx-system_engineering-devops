@@ -1,0 +1,3 @@
+#!/bin/bash
+alias c=clear em=emacs ch=chmod ec=echo
+

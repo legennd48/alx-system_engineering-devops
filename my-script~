@@ -1,6 +1,0 @@
-#!/bin/bash
-alias c=clear
-alias em=emacs
-alias ch=chmod
-alias ec=echo
-

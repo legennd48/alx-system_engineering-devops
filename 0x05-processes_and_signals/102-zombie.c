@@ -3,51 +3,41 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
+
 /**
- * create_zombie_processes -  creates 5 zombie processes.
- * @num_zombies: number of zombies to be made
+ * infinite_while - create infinite sleep loop
+ * Return: 0
  */
-void create_zombie_processes(int num_zombies);
 
-void create_zombie_processes(int num_zombies)
+int infinite_while(void)
 {
-	int i;
-	pid_t pid;
-
-	for (i = 0; i < num_zombies; ++i)
+	while (1)
 	{
-		pid = fork();
-
-		if (pid < 0)
-		{
-			perror("Fork failed");
-			exit(EXIT_FAILURE);
-		}
-		else if (pid == 0)
-		{
-			/* This is the child process */
-			printf("Zombie process created, PID: %d\n", getpid());
-			exit(EXIT_SUCCESS);
-		}
+		sleep(1);
 	}
-
-	/* Parent process waits for a while to allow zombies to be created */
-	sleep(10);
+	return (0);
 }
 
 /**
- * main - Entry point
- * Return: 0 for success
+ * main - creates 5 zombie processes
+ * Return: infinite_while zombies
  */
-
 int main(void)
 {
-	int num_zombies = 5;
+	pid_t zombie;
+	unsigned int i;
 
-	create_zombie_processes(num_zombies);
-
-	/* The parent process continues execution */
-	/* You can add more code here if needed */
-
-	return (0);
+	for (i = 0; i < 5; i++)
+	{
+		zombie = fork();
+		if (zombie == 0)
+		{
+			exit(0);
+		}
+		else
+		{
+			printf("Zombie process created, PID: %d\n", zombie);
+		}
+	}
+	return (infinite_while());
 }

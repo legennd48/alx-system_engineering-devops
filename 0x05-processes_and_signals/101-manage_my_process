@@ -1,7 +1,36 @@
 #!/usr/bin/env bash
-# Infinite loop. Script to be used with 101-manage_my_process
+# Start/Stops/Restarts. Script to be used with manage_my_process
 
-while true; do
-    echo "I am alive!" >> /tmp/my_process
-    sleep 2
-done
+action=$1
+pid_file="/var/run/my_process.pid"
+
+start_loop_and_create_file()
+{
+    ./manage_my_process &
+    echo "$!" > "$pid_file"
+}
+
+kill_loop_and_remove_file()
+{
+    sudo pkill -f "./manage_my_process"
+    rm "$pid_file"
+}
+
+case "$action" in
+    start)
+        echo "manage_my_process started"
+        start_loop_and_create_file
+        ;;
+    stop)
+        echo "manage_my_process stopped"
+        kill_loop_and_remove_file
+        ;;
+    restart)
+        echo "manage_my_process restarted"
+        kill_loop_and_remove_file
+        start_loop_and_create_file
+        ;;
+    *)
+        echo "Usage: manage_my_process {start|stop|restart}"
+        ;;
+esac

@@ -1,6 +1,5 @@
-# using puppet to install a package
-
-package {'flask':
-  ensure   => '2.1.0', # ensure package version
-  provider => 'pip3', # sets package provider
-  }
+# Using Puppet to install a Python package (Flask)
+package { 'flask':
+  ensure   => '2.1.0',   # Ensure package version
+  provider => 'pip3',    # Sets package provider
+}

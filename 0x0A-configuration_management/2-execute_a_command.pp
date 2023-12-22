@@ -1,4 +1,4 @@
-# kill a progem call killmenow
+# kill a process called killmenow
 
 exec {'killmenow':
   command => '/usr/bin/pkill -f "killmenow"',

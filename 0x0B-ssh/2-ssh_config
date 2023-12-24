@@ -1,0 +1,5 @@
+# SSH client side configuration file
+
+Host 100.26.239.81
+     PasswordAuthentication no
+     IdentityFile ~/.ssh/school

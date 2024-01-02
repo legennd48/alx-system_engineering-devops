@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# automatically installs and configures Nginx to listen on port 80
+# make a file at root of server containing 'Hello World!'
+
+apt-get update
+apt-get -y install nginx
+chmod o+w /var/www/html/
+echo "Hello World!" > /var/www/html/index.html

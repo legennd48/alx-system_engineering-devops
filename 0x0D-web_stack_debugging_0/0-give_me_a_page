@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Fix server by starting apache. it seems offline
+sudo service apache2 restart

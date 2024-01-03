@@ -1,30 +1,10 @@
 # Setup New Ubuntu server with nginx
 
-# execue update command
-exec { 'update':
-  command => '/usr/bin/apt-get update',
-}
-
-# install nginx
-package { 'nginx':
-  ensure => 'installed',
-}
-
-# Create index
-file { '/var/www/html/index.html':
-  ensure  => present,
-  content => 'Hello World!',
-}
-
-# configure redirect 301
-exec {'redirect_me':
-  command  => 'sed -i "24i\	rewrite ^/redirect_me https://github.com" /etc/nginx/sites-available/default',
-  provider => 'shell',
-}
-
-# Ensure Nginx service is running
-service { 'nginx':
-  ensure  => running,
-  enable  => true,
-  require => Package['nginx'],
+exec { 'install_nginx':
+  provider => shell,
+  command  => 'sudo apt-get -y update' +
+              ' && sudo apt-get -y install nginx' +
+              ' && echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html' +
+              ' && sudo sed -i "/server_name _;/a\ \n\tlocation /redirect_me {\n\t\treturn 301 https://github.com;\n\t}" /etc/nginx/sites-available/default' +
+              ' && sudo service nginx start',
 }

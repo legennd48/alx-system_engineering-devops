@@ -2,8 +2,22 @@
 # configure a server with custom header 'X-Served-By' whith the
 # value equal to the hostname of the server processing the request
 
-# backup file:
-cp /etc/nginx/sites-enabled/default ~/default_backup_sitesAvailable
+apt-get update
+apt-get -y install nginx
+chmod o+w /var/www/html/
+echo "Hello World!" > /var/www/html/index.html
+
+# custom 404 page
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+
+# Backup default Nginx configuration
+cp /etc/nginx/sites-enabled/default ~/defaultBackup
+
+redirectLine="server_name _;\n\n\tlocation /redirect_me {\n\t\treturn 301 https://github.com;\n\t}"
+errorPage="server_name _;\n\n\terror_page 404 /404.html;\n"
+sed -i "s|server_name _;|${redirectLine}|" /etc/nginx/sites-enabled/default
+sed -i "s|server_name _;|${errorPage}|" /etc/nginx/sites-enabled/default
+
 # insert header
 sed -i "/location \/ {/ a\\\t\tadd_header X-Served-By \$hostname;" /etc/nginx/sites-enabled/default
 
@@ -11,4 +25,4 @@ sed -i "/location \/ {/ a\\\t\tadd_header X-Served-By \$hostname;" /etc/nginx/si
 nginx -t
 
 # restart nginx
-systemctl reload nginx
+service nginx restart

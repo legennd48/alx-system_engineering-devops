@@ -7,7 +7,7 @@ apt-get -y install software-properties-common
 add-apt-repository -y ppa:vbernat/haproxy-2.8
 
 # installing HAproxy
-apt-get -y install haproxy=2.8.\*
+apt-get -y install haproxy=1.8.\*
 
 # Ensure HAProxy can be managed via an init script
 sed -i "s/ENABLED=0/ENABLED=1/" /etc/default/haproxy

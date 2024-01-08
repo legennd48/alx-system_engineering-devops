@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# configure a server with custom header 'X-Served-By' whith the
+# value equal to the hostname of the server processing the request
+
+# backup file:
+cp /etc/nginx/sites-enabled/default ~/default_backup_sitesAvailable
+# insert header
+sed -i "/location \/ {/ a\\\t\tadd_header X-Served-By \$hostname;" /etc/nginx/sites-enabled/default
+
+# test nginx for errors
+nginx -t
+
+# restart nginx
+systemctl reload nginx

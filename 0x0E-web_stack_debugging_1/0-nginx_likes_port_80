@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# configure server to fix 'not listening on port 80'
+# cause found: nginx is not present. we will be installing nginx to fix it
+
+sudo apt-get update
+sudo apt-get install nginx
+sudo service nginx start

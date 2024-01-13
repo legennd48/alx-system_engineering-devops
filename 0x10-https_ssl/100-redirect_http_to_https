@@ -46,6 +46,6 @@ frontend www-https
 
 backend www-backend
         balance roundrobin
-        redirect scheme https if !{ ssl_fc }
+        redirect scheme https code 301 if !{ ssl_fc }
         server 430654-web-01 100.26.239.81:80 check
         server 430654-web-02 100.25.163.174:80 check

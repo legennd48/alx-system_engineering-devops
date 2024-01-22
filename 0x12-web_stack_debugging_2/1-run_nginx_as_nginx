@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# start nginx using nginx user
+# nginx must be listening on all active IPs on port 8080
+service nginx stop
+sudo sed -i 's/listen 80 default_server;/listen 8080 default_server;/g' /etc/nginx/sites-available/default
+chmod 644 /etc/nginx/nginx.conf
+pkill apache2
+su - nginx -c 'service nginx start'

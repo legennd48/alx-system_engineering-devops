@@ -1,0 +1,1 @@
+LEARNING of and configuring a firewall as a full-stack student at ALX

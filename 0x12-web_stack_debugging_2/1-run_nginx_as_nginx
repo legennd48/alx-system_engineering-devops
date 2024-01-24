@@ -5,5 +5,4 @@ service nginx stop
 sed -i "s/#user www-data/user ngnix/" /etc/nginx/nginx.conf
 sudo sed -i 's/listen 80 default_server;/listen 8080 default_server;/g' /etc/nginx/sites-available/default
 chmod 644 /etc/nginx/nginx.conf
-pkill apache2
 sudo -u nginx service nginx start

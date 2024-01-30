@@ -11,7 +11,7 @@ from sys import argv
 if __name__ == "__main__":
     url = "https://jsonplaceholder.typicode.com/"
     userId = argv[1]
-    user = requests.get(url + "users/{}".format(userId)).json().get('name')
+    user = requests.get(url + "users/{}".format(userId)).json().get('username')
     todo = requests.get(url + "todos", params={"userId": userId}).json()
     taskList = []
 

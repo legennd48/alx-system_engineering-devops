@@ -1,6 +1,9 @@
+#!/usr/bin/python3
 import requests
 '''
 3. Count it!
+counts and parts the title of all hot articles
+prints sorted count of given keywords
 '''
 
 

@@ -1,4 +1,4 @@
-#!/use/bin/env python3
+#!/usr/bin/python3
 import requests
 '''
 3. Count it!

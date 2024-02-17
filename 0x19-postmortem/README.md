@@ -1,3 +1,7 @@
+# Learning to write a postmoterm report.
+you will find below a copy of the said report.
+please find original on: [medium](https://medium.com/@legennd48/website-x-outage-postmortem-january-8-2024-388b42da7bb8)
+
 Website Outage Postmortem (January 8, 2024)
 This report details an outage affecting our website on January 8, 2024, from 6:00 AM to 6:46 AM WAT. During this time, users were unable to access our services. We take full responsibility for this downtime and apologize for any inconvenience caused.
 Issue Summary:

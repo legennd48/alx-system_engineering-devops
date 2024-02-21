@@ -1,15 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Start the Gunicorn application server
-start_gunicorn() {
-    cd /home/ubuntu/AirBnB_clone_v4 || exit 1
-    exec gunicorn --workers 3 --bind 0.0.0.0:5003 web_dynamic.2-hbnb:app >> /tmp/airbnb-access.log 2>> /tmp/airbnb-error.log
-}
+# reStart the Gunicorn application server with min downtime
 
-# Main function
-main() {
-    start_gunicorn
-}
-
-# Run the main function
-main
+ps aux | grep gunicorn | awk '{ print $2 }' | xargs kill -HUP

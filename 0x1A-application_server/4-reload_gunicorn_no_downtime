@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # reStart the Gunicorn application server with min downtime
 
-ps aux | grep gunicorn | awk '{ print $2 }' | xargs kill -HUP
+pkill -HUP -f "gunicorn master"
